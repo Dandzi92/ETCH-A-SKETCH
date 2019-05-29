@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Etch-and-Scatch</title>
+	<link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+	<header>
+		<div>
+			<h2>WELCOME TO ETCH-A-SKETCH PROJECT!</h2>
+		</div>
+		<div>
+			<button class="btn size">Change Size</button>
+			<button class="btn clear">Refresh</button>
+			<button class="btn black">Black trace</button>
+			<button class="btn rainbow">Rainbow trace</button>
+			<button class="btn gradual">Gradual trace</button>
+		</div>
+	</header>
+	<main>
+		<div id="table"></div>
+	</main>
+	<script>
+
+		let divgrid = document.getElementById("table");
+
+		let newdiv = document.createElement("div");
+
+		newdiv.style.cssText = "background-color: white; border: 1px solid green";
+
+		divgrid.style.cssText = "grid-template: repeat(4, 1fr) / repeat(4, 1fr);";
+
+		for (let i = 0; i < 4 ** 2; i++) {
+
+			divgrid.appendChild(newdiv.cloneNode(true));
+		}
+
+		divgrid.addEventListener('mouseover', function (e) {
+			
+			if (e.target.nodeName == "DIV" && e.target !== divgrid) {
+			
+				e.target.style.backgroundColor = 'black';}
+			
+		});
+
+
+		function makeGrid() {
+
+			let choice = prompt("type your preferable quantity of lines per line", "4");
+			if (choice == null || choice == "" || choice == 0) { return; }
+			let squaresPerLine = Number(choice);
+
+			divgrid.innerHTML = "";
+
+			divgrid.style.cssText = `grid-template: repeat(${squaresPerLine},
+			 1fr) / repeat(${squaresPerLine} , 1fr);`;
+
+			for (let i = 0; i < squaresPerLine ** 2; i++) {
+
+				divgrid.appendChild(newdiv.cloneNode(true));
+			}
+		}
+
+		let sizeButton = document.getElementsByClassName("size")[0];
+
+		sizeButton.addEventListener("click", makeGrid);
+
+		let blackButton = document.getElementsByClassName("black")[0];
+
+		/*blackButton.addEventListener("click", );
+
+		function paintSquares () {
+
+
+		} */
+
+
+
+	</script>
+
+</body>
+
+</html>
