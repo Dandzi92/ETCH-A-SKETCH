@@ -45,8 +45,8 @@ header div {
 .size {background-color: #4CAF50;} /* Green */
 .size:hover {background-color: #46a049; }
 
-.clear {background-color: #2196F3;} /* Blue */
-.clear:hover {background: #0b7dda;}
+.refresh {background-color: #2196F3;} /* Blue */
+.refresh:hover {background: #0b7dda;}
 
 .black {background-color: black;} /* Black */
 .black:hover {background: rgb(70, 64, 64);}

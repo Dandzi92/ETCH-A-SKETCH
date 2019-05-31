@@ -13,7 +13,7 @@
 		</div>
 		<div>
 			<button class="btn size">Change Size</button>
-			<button class="btn clear">Refresh</button>
+			<button class="btn refresh">Refresh</button>
 			<button class="btn black">Black trace</button>
 			<button class="btn rainbow">Rainbow trace</button>
 			<button class="btn gradual">Gradual trace</button>
@@ -22,34 +22,37 @@
 	<main>
 		<div id="table"></div>
 	</main>
+
 	<script>
 
+		let ratioForGradualDark = 1;
 		let divgrid = document.getElementById("table");
-
 		let newdiv = document.createElement("div");
 
 		newdiv.style.cssText = "background-color: white; border: 1px solid green";
-
 		divgrid.style.cssText = "grid-template: repeat(4, 1fr) / repeat(4, 1fr);";
 
 		for (let i = 0; i < 4 ** 2; i++) {
-
 			divgrid.appendChild(newdiv.cloneNode(true));
 		}
 
-		divgrid.addEventListener('mouseover', function (e) {
-			
+
+		divgrid.addEventListener('mouseover', makeGradualDark);
+
+		function makeRainbowTrace(e) {
 			if (e.target.nodeName == "DIV" && e.target !== divgrid) {
-			
-				e.target.style.backgroundColor = 'black';}
-			
-		});
+				e.target.style.backgroundColor = `${makeRandomColor()}`;
+			}
+		}
 
 
 		function makeGrid() {
-
 			let choice = prompt("type your preferable quantity of lines per line", "4");
-			if (choice == null || choice == "" || choice == 0) { return; }
+
+			if (choice == null || choice == "" || choice == 0) {
+				return;
+			}
+
 			let squaresPerLine = Number(choice);
 
 			divgrid.innerHTML = "";
@@ -58,7 +61,6 @@
 			 1fr) / repeat(${squaresPerLine} , 1fr);`;
 
 			for (let i = 0; i < squaresPerLine ** 2; i++) {
-
 				divgrid.appendChild(newdiv.cloneNode(true));
 			}
 		}
@@ -67,8 +69,53 @@
 
 		sizeButton.addEventListener("click", makeGrid);
 
-		let blackButton = document.getElementsByClassName("black")[0];
+		let refreshButton = document.getElementsByClassName("refresh")[0];
 
+		refreshButton.addEventListener("click", refresh);
+
+		function refresh(e) {
+			let gridSquares = divgrid.getElementsByTagName('div');
+
+			for (let i = 0; i < gridSquares.length; i++) {
+				gridSquares[i].style.backgroundColor = "white";
+			}
+		}
+
+		let rainbowButton = document.getElementsByClassName("rainbow")[0];
+
+		function makeRandomColor() {
+			let color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+
+			return color;
+		}
+
+
+
+		function makeGradualDark(e) {
+
+			if (e.target.nodeName == "DIV" && e.target !== divgrid) {
+				if (ratioForGradualDark == 1) {
+					event.target.style.backgroundColor = "rgb(255, 255, 255)";
+				}
+
+				ratioForGradualDark -= 0.1;
+
+				let rgbValueTarget = ratioForGradualDark * 255;
+				let newRgbTarget = Math.round(rgbValueTarget);
+
+				event.target.style.backgroundColor = `rgb(${newRgbTarget}, ${newRgbTarget}, ${newRgbTarget})`;
+
+				if (event.target.style.backgroundColor == "rgb(0, 0, 0)") {
+					ratioForGradualDark = 1;
+				}
+			}
+		}
+
+
+		/*rainbowButton.addEventListener("click", function (e) {
+
+
+		})
 		/*blackButton.addEventListener("click", );
 
 		function paintSquares () {
