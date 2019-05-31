@@ -13,42 +13,32 @@ header {
     background-color: rgb(92, 13, 196);
     padding: 5px;
 }
+
 header div {
     width: 655px;
     margin: 0 auto;
 }
 
 .btn {
-    border: none; /* Remove borders */
-    color: white; /* Add a text color */
-    padding: 14px 28px; /* Add some padding */
-    cursor: pointer; /* Add a pointer cursor on mouse-over */
+    border: none; 
+    color: white; 
+    padding: 14px 28px; 
+    cursor: pointer; 
     box-shadow: 3px 3px 5px  black;
   }
+  
   .btn:active {
-    /*background-color: #3e8e41;*/
     box-shadow: 1px 1px 5px black;
     transform: translateY(2px) translateX(2px);
   }
 
-   /*.groupbuttons {
-    display: inline-block;
-    min-width: 350px; 
-}  
-    .controls {
-    min-width: 230px;
-    margin-left: 320px;
-    margin-right: 100px;
-
-    }*/
-
-.size {background-color: #4CAF50;} /* Green */
+.size {background-color: #4CAF50;} 
 .size:hover {background-color: #46a049; }
 
-.refresh {background-color: #2196F3;} /* Blue */
+.refresh {background-color: #2196F3;} 
 .refresh:hover {background: #0b7dda;}
 
-.black {background-color: black;} /* Black */
+.black {background-color: black;} 
 .black:hover {background: rgb(70, 64, 64);}
 
 .rainbow {background-color: rgb(243, 33, 79);} 
@@ -60,11 +50,9 @@ header div {
 #table {
  box-sizing: border-box;
  display: grid;
- border: 1px solid whitesmoke;
  width: 550px;
  height: 550px;
  margin: 5px auto;
-
 }
 
 
